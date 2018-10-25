@@ -1,3 +1,7 @@
+/* Merge Sort with Recursion
+   Jeny Susan Rajan S3 D 
+   Roll No 28 */
+
 #include <stdio.h>
 void MergeSort(int a[],int i,int j);
 void Merge(int a[],int i1,int j1,int i2,int j2);
