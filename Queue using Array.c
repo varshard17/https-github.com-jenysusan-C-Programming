@@ -1,4 +1,6 @@
-
+/* Queue using Array
+   Jeny Susan Rajan S3 D
+   Roll no: 28 */
 #include <stdio.h>
 
 int queue[100], n=100, front=-1, rear=-1;
