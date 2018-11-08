@@ -1,3 +1,8 @@
+/* Polynomial Representation
+   Jeny Susan Rajan S3 D
+   Roll no: 28 */
+
+
 #include<stdio.h>
 #include<stdlib.h>
 
