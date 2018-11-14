@@ -1,3 +1,9 @@
+/* Implementation of Stack using Array
+   Jeny Susan Rajan S3 D 
+   Roll No 28 */
+
+
+
 #include <stdio.h>
 
 int stack[100], n=100, top;
