@@ -1,19 +1,18 @@
+/* Implementation of Dequeue using Array
+   Jeny Susan Rajan S3 D 
+   Roll No 28 */
+
 #include<stdio.h>
 #include<stdlib.h>
-
 void main()
 {
     int queue[15],i,front=0,choice,end=0,ele,cho,limit=14;
-
     do
     {
         printf("\nMENU\n1.Insertion(Front)\n2.Deletion(Front)\n3.Insertion(End)\n4.Deletion(End)\n5.Display\n6.Exit\nEnter Choice: ");
         scanf("%d",&choice);
-
         switch(choice)
         {
-
-                
             case 1: printf("Enter the value of element: ");
                     scanf("%d",&ele);
                     if(front==0 || front==1)
