@@ -26,7 +26,7 @@ void main()
     top_op=head_op;
 
     printf("Enter the infix form: ");
-    scanf("%s",infix);
+    scanf("%s",&infix);
 
     for(i=0;i<strlen(infix);i++)
     {
