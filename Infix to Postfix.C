@@ -4,106 +4,85 @@
 
 
 
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-
-struct node
+#include <stdio.h>
+int instackPriority(char symbol) 
 {
-    char value;
-    struct node *link;
-};
-
-int issy(char x)
-{
-    if(x=='+' || x=='-'||x=='*'||x=='/'||x=='('||x==')')
-    {
-        return 1;
-    }   
-    else
-    {
-        return 0;
-    }
+  switch(symbol) 
+  {
+    case '+':
+    case '-':
+      return 2;
+    case '*':
+    case '/':
+      return 4;
+    case '^':
+      return 6;
+    case '(':
+      return 0;
+  }
 }
-int j=0;
-char post[25];
-void postfix(struct node *y,struct node *head_op)
+int incomingPriority(char symbol)
 {
-    if(y->link!=head_op)
-    {
-        postfix(y->link,head_op);
-        post[j]=y->value;
-        j++;
-    }
-    else
-    {
-        post[j]=y->value;
-        j++;
-    }
+  switch(symbol) 
+  {
+    case '+':
+    case '-':
+      return 1;
+    case '*':
+    case '/':
+      return 3;
+    case '^':
+      return 5;
+  }
 }
-void main()
+int isOperand(char symbol) 
 {
-    struct node *head_op,*head_sy,*top_op,*top_sy,*temp;
-    char infix[25],x;
-    int i;
-
-    head_op=(struct node*)malloc(sizeof(struct node));
-    head_op->value=NULL;
-    head_op->link=NULL;
-    top_op=head_op;
-
-    head_sy=(struct node*)malloc(sizeof(struct node));
-    head_sy->value=NULL;
-    head_sy->link=NULL;
-    top_sy=head_sy;
-    
-
-    printf("Enter the infix form: ");
-    scanf("%s",infix);
-    for(i=0;i<strlen(infix);i++)
+  if ((symbol>=97 && symbol<=122) || (symbol>=65 && symbol<=90)) 
+  {
+    return 1;
+  }
+  return 0;
+}
+int main () 
+{
+  char infix[20], stack[100];
+  int i, top=-1;
+  printf("Enter the infix expression : ");
+  scanf(" %s", &infix);
+  for (i=0; infix[i] != '\0'; i++) 
+  {
+    if (isOperand(infix[i])) 
     {
-        if(issy(infix[i])==1)
-        {
-            if(infix[i]==')')
-            {
-                while(top_sy->value!='(')
-                {
-                    x=top_sy->value;
-                    temp=top_sy;
-                    top_sy=top_sy->link;
-                    free(temp);
-
-                    temp=(struct node*)malloc(sizeof(struct node));
-                    temp->value=x;
-                    temp->link=top_op;
-                    top_op=temp;
-
-                }
-                if(top_sy->value=='(')
-                {
-                    temp=top_sy;
-                    top_sy=top_sy->link;
-                    free(temp);
-                }
-            }
-            else
-            {
-                temp=(struct node*)malloc(sizeof(struct node));
-                temp->value=infix[i];
-                temp->link=top_sy;
-                top_sy=temp;
-            }
-        }
-        else
-        {
-            temp=(struct node*)malloc(sizeof(struct node));
-            temp->value=infix[i];
-            temp->link=top_op;
-            top_op=temp;
-
-        }
-    }
-    
-    postfix(top_op,head_op);
-    printf("%s",post);
+      printf("%c", infix[i]);
+    } 
+     else if (infix[i] == '(') 
+    {
+      stack[++top] = infix[i];
+    } 
+     else if (infix[i] == ')') 
+    {
+      while (stack[top] != '(') 
+      {
+        printf("%c", stack[top--]);
+      }
+      top--;
+    } 
+    else if (instackPriority(stack[top])>incomingPriority(infix[i])) 
+    {
+      while (instackPriority(stack[top])>incomingPriority(infix[i]) && top>-1) 
+      {
+        printf("%c", stack[top--]);
+      }
+      stack[++top] = infix[i];
+    } 
+     else 
+     {
+      stack[++top] = infix[i];
+     }
+  }
+  while (top > -1) 
+  
+  {
+    printf("%c", stack[top--]);
+  }
 }
