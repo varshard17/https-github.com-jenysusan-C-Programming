@@ -1,4 +1,4 @@
-/* Infix Evaluation using Stack
+/* Infix Expression Evaluation using Stack
    Jeny Susan Rajan S3 D 
    Roll No 28 */
 
