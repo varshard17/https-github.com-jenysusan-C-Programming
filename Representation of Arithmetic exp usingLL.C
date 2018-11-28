@@ -3,42 +3,80 @@
    Roll No 28 */
 
 
+#include <stdio.h>
+#include <stdlib.h>
 
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-
-struct node
+struct node 
 {
-    char value;
-    struct node *link;
-};
+	char data;
+	struct node *next;
+}*HEADER;
 
-
-void main()
+int deleteAll() 
 {
-    struct node *head_op,*top_op,*temp;
-    char infix[25],x;
-    int i;
-    head_op=(struct node*)malloc(sizeof(struct node));
-    head_op->value=NULL;
-    head_op->link=NULL;
-    top_op=head_op;
+	struct node *ptr = HEADER, *prevPtr;
+	while (ptr != NULL)
+   {
+		prevPtr = ptr;
+		ptr = ptr->next;
+		free(prevPtr);
+	}
+	HEADER->next = NULL;
+	return (0);
+}
+struct node *newNode()
+{
+	struct node *newptr = malloc(sizeof(struct node));
+	if (newptr == NULL) 
+   {
+		printf("Memory overflow");
+		deleteAll();
+		exit(0);
+	}
+	return (newptr);
+}
+int insertNodeEnd(int data)
+{
+	struct node *newptr = newNode(), *currentNode = HEADER;
 
-    printf("Enter the infix form: ");
-    scanf("%s",&infix);
+	while (currentNode->next != NULL) 
+   {
+		currentNode = currentNode->next;
+	}
 
-    for(i=0;i<strlen(infix);i++)
-    {
-        temp=(struct node*)malloc(sizeof(struct node));
-        temp->value=infix[i];
-        temp->link=top_op;
-        top_op=temp;
-    }
-    temp=top_op;
-    while(temp!=head_op)
-    {
-        printf(" %c ->",temp->value);
-        temp=temp->link;
-    }    
+	newptr->next = currentNode->next;
+	newptr->data = data;
+	currentNode->next = newptr;
+	return (0);
+}
+
+int printLinkedList() 
+{
+	struct node *currentNode = HEADER->next;
+	while (currentNode != NULL) 
+   {
+		printf("%c", currentNode->data);
+		currentNode = currentNode->next;
+	}
+  printf("\n");
+	return (0);
+}
+
+int main() 
+{
+  char infix[100], buffer;
+  int i=0;
+  HEADER = malloc(sizeof(struct node));
+  HEADER->data = 0;
+  HEADER->next = NULL;
+  printf("Enter arithmatic expression : ");
+  scanf("%s", &infix);
+  for (i=0; infix[i]!='\0'; i++) 
+  {
+    insertNodeEnd(infix[i]);
+  }
+  printf("Entered experssion : ");
+  printLinkedList();
+  deleteAll();
+  return (0);
 }
