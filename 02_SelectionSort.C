@@ -9,15 +9,14 @@ void main()
 {
   int a[5],i,j,k,n,temp,min;
   clrscr();
-  printf("enter the size of the array: ");
+  printf("Enter the size of the array: ");
   scanf("%d",&n);
-  printf("enter the elements of the array: \n");
+  printf("Enter the elements of the array: \n");
   for(i=0;i<n;i++)
   {
     scanf("%d",&a[i]);
   }
   min=a[0];
-  printf("the sorted array is: \n");
   for(i=0;i<n;i++)
   {
     for(j=0;j<i+1;j++)
@@ -30,10 +29,17 @@ void main()
       }
     }
   }
-  printf("the sorted array is: ");
+  printf("The sorted array is: ");
   for(i=0;i<n;i++)
   {
     printf("%d",a[i]);
   }
   getch();
   }
+
+OUTPUT:
+Enter the size of the array: 2
+Enter the elements of the array: 
+2
+3
+The sorted array is: 23
