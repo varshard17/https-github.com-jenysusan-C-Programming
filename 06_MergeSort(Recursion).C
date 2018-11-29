@@ -2,56 +2,63 @@
    Jeny Susan Rajan S3 D 
    Roll No 28 */
 
-#include <stdio.h>
-void MergeSort(int a[],int i,int j);
-void Merge(int a[],int i1,int j1,int i2,int j2);
-
+#include<stdio.h>
+int a[20];
+void merge_sort(int[],int,int);
+void merge(int[],int,int,int);
 int main()
-{   
-    int a[30],n,i;
-    printf("Enter no: of elements:");
-    scanf("%d",&n);
-    printf("Enter array elements:");
-    for(i=0;i<n;i++)
-  	scanf("%d",&a[i]);
-    MergeSort(a,0,n-1);
-    printf("\n The Sorted array is:");
-    for(i=0;i<n;i++)
-	printf("\n %d",a[i]);
-    return 0;
+{
+  int n,i;
+  printf("enter the size of the array\n");
+  scanf("%d",&n);
+  printf("enter the elements:");
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  merge_sort(a,0,n-1);
+  printf("sorted array:");
+  for(i=0;i<n;i++)
+  {
+    printf("%d",a[i]);
+  }
+  return 0;
 }
-
-
-void MergeSort(int a[],int i,int j)
-{   int mid;
-    if(i<j)
-    {  
-	   mid=(i+j)/2;
-	   MergeSort(a,i,mid);
-	   MergeSort(a,mid+1,j);
-	   Merge(a,i,mid,mid+1,j);
+  void merge_sort(int a[],int low,int high)
+  {
+    int mid;
+    if(low<high)
+    {
+      mid=(low+high)/2;
+      merge_sort(a,low,mid);
+      merge_sort(a,mid+1,high);
+      merge(a,low,mid,high);
     }
-}
 
+  }
+  void merge(int a[10],int l,int m,int h)
+  {
+    int a1[10];
+    int n1,n2,i;
 
-void Merge(int a[],int i1,int j1,int i2,int j2)
-{    
-     int temp[50];
-     int i,j,k;
-     i=i1;
-     j=i2;
-     k=0;
-     while(i<=j1&&j<=j2)
-     	{  
-	   if(a[i]<a[j])
-	      temp[k++]=a[i++];
-           else
-	      temp[k++]=a[j++];
-	}
-     while(i<=j1)
-	   temp[k++]=a[i++];
-     while(j<=j2)
-	   temp[k++]=a[j++];
-     for(i=i1,j=0;i<=j2;i++,j++)
-	   a[i]=temp[j];
-}
+    for(n1=l,n2=m+1,i=l;n1<=m&&n2<=h;i++)
+    {
+       if(a[n1]<=a[n2])
+	  a1[i]=a[n1++];
+       else
+	  a1[i]=a[n2++];
+    }
+     while(n1<=m)
+	  a1[i++]=a[n1++];
+     while(n2<=h)
+	  a1[i++]=a[n2++];
+     for(i=l;i<=h;i++)
+	  a[i]=a1[i];
+
+  }
+OUTPUT:
+Enter the number of elements : 2
+Enter element 1 :5
+Enter element 2 :1
+Unsorted list is : 5 1 
+Size=1 
+Elements are : 1 5 Sorted list is :
+1 5
