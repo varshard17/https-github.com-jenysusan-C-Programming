@@ -80,3 +80,7 @@ int main()
   deleteAll();
   return (0);
 }
+
+OUTPUT:
+Enter arithmatic expression : (1+9)*1
+Entered experssion : (1+9)*1
