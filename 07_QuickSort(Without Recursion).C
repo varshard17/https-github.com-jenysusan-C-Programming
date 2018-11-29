@@ -4,68 +4,54 @@
 
 
 
-#include <stdio.h>
-void swap(int *a, int *b) 
+#include<stdio.h>
+void quicksort(int num[25],int first,int last)
 {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
-}
-int partition(int array[], int low, int high) 
-{
-  int i = low-1;
-  int pivot = array[high];
-
-  for (int j=low; j<high; j++) 
-  {
-    if (array[j]<pivot) 
-    {
-      swap(&array[++i], &array[j]);
-    }
-  }
-  swap(&array[++i], &array[high]);
-  return i;
-}
-int quickSortIterative(int array[], int low, int high) 
-{
-  int stack[100];
-  int partitionIndex, top=-1;
-  stack[++top] = low;
-  stack[++top] = high;
-  while (top > -1) 
-  {
-    high = stack[top--];
-    low = stack[top--];
-    partitionIndex = partition(array, low, high);
-    if (low < partitionIndex-1) 
-    {
-      stack[++top] = low;
-      stack[++top] = partitionIndex-1;
-    }
-    if (partitionIndex+1 < high) 
-    {
-      stack[++top] = partitionIndex+1;
-      stack[++top] = high;
-    }
-  }
-}
-int printArray(int a[], int size) 
-{
-	int i=0;
-	for (i=0; i<size; i++) 
+	int i,j,pivot,temp;
+	if(first<last)
 	{
-		printf("%d\n", a[i]);
+		pivot = first;
+		i = first;
+		j = last;
+		while(i<j){
+			while(num[i]<=num[pivot] &&i<last)
+				i++;
+			while(num[j]>num[pivot])
+				j--;
+			if(i<j)
+			{
+				temp = num[i];
+				num[i] = num[j];
+				num[j] = temp;
+			}
+		}
+	}
+	temp = num[pivot];
+	num[pivot] = num[j];
+	num[j] = temp;
+	quicksort(num,first,j-1);
+	quicksort(num,j+1,last);
 	}
 }
-int main() 
+int main()
 {
-	int array[100], i, size;
-	printf("Enter size of the array : ");
-	scanf("%d", &size);
-	printf("Enter array elements\n");
-	for (i=0; i<size; i++)
-		scanf("%d", &array[i]);
-	printf("Sorted Array\n");
-	quickSortIterative(array, 0, size-1);
-	printArray(array, size);
+	int i,count,num[25];
+	printf("How many elements?");
+	scanf("%d",&count);
+	printf("Enter %d elements:",count);
+	for(i=0;i<count;i++)
+		scanf("%d",&num[i]);
+	quicksort(num,0,count-1);
+	printf("ORDERED:");
+	for(i=0;i<count;i++)
+		printf("%d",num[i]);
+	return 0;
 }
+OUTPUT:
+Enter the number of elements : 2
+Enter element 1 :5
+Enter element 2 :2
+Unsorted list is : 5 2
+Size=1 
+Elements are : 2 5 Sorted list is :
+2 5
