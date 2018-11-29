@@ -62,3 +62,7 @@ int main()
   }
   printf("%d \n", stack[top]);
 }
+
+OUTPUT:
+Enter the postfix expression: 456*+
+  34
