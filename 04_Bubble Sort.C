@@ -27,3 +27,9 @@ main()
 		printf("%d",a[j]);
 	
 }
+
+
+OUTPUT:
+Enter size: 3 
+Enter elements: 7 1 3
+The sorted array is: 137
