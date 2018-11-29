@@ -9,7 +9,7 @@ main()
 	int a[50],i,n,x,f=0,beg,last,mid;
 	printf("Enter size of array:");
 	scanf("%d",&n);
-	printf("Enter array elements:");
+	printf("Enter elements:");
 	for(i=0;i<n;i++)
 		scanf("%d",&a[i]);
 	printf("Enter element to be searched:");
@@ -34,3 +34,10 @@ main()
 	else 
 		printf("\n Element not found");
 }
+
+OUTPUT:
+Enter size of array: 5
+Enter elements:
+7 3 2 9 6
+Enter element to be searched: 6
+Element found at position: 3
