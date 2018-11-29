@@ -4,52 +4,65 @@
 
 
 #include<stdio.h>
-#define max 25
-
+#define MAX 30
 int main()
 {
-	int arr[max],temp[max],i,j,k,n,size,x1,y1,x2,y2;
-	printf("enter the number of elements : ");
+	int a[MAX],temp[MAX],i,j,k,n,size,l1,h1,l2,h2;
+	printf("Enter the number of elements : ");
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
-	{
-		printf("enter the elements %d :",i+1);
-		scanf("%d",&arr[i]);
+	{	
+		printf("Enter element %d :",i+1);
+		scanf("%d",&a[i]);
 	}
+	printf("Unsorted list is : ");
+	for( i = 0 ; i<n ; i++)
+		printf("%d ", a[i]);
 	for(size=1; size < n; size=size*2 )
 	{
-		x1=0;
-   		k=0; 
-		while(x1+size<n)
+		l1=0;
+		k=0; 
+		while( l1+size < n)
 		{
-			y1=x1+size-1;
-			x2=y1+1;
-			y2=x2+size-1;
-			if(y2>=n) 
-				y2=n-1;
-			i=x1;
-			j=x2;
-			while(i<=y1&&j<=y2)
+			h1=l1+size-1;
+			l2=h1+1;
+			h2=l2+size-1;
+			if( h2>=n )
+				h2=n-1;
+			i=l1;
+			j=l2;
+			while(i<=h1 && j<=h2 )
 			{
-				if( arr[i]<=arr[j] )
-					temp[k++]=arr[i++];
+				if( a[i] <= a[j] )
+					temp[k++]=a[i++];
 				else
-					temp[k++]=arr[j++];
+					temp[k++]=a[j++];
 			}
-			while(i<=y1)
-				temp[k++]=arr[i++];
-			while(j<=y2)
-				temp[k++]=arr[j++];
-			x1=y2+1; 
+			while(i<=h1)
+				temp[k++]=a[i++];
+			while(j<=h2)
+				temp[k++]=a[j++];
+			l1=h2+1;
 		}
-		for(i=x1; k<n; i++) 
-			temp[k++]=arr[i];
+		for(i=l1; k<n; i++) 
+			temp[k++]=a[i];
 		for(i=0;i<n;i++)
-			arr[i]=temp[i];
+			a[i]=temp[i];
+		printf("\nSize=%d \nElements are : ",size);
+		for( i = 0 ; i<n ; i++)
+			printf("%d ", a[i]);
 	}
 	printf("Sorted list is :\n");
 	for( i = 0 ; i<n ; i++)
-		printf("%d ", arr[i]);
+		printf("%d ", a[i]);
 	printf("\n");
-	return 0;
+return 0;
 }
+OUTPUT:
+Enter the number of elements : 2
+Enter element 1 :3
+Enter element 2 :1
+Unsorted list is : 3 1 
+Size=1 
+Elements are : 1 3 Sorted list is :
+1 3
