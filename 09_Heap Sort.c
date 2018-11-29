@@ -3,51 +3,75 @@
    Roll no: 28 */
 
 
-#include<stdio.h>
+#include <stdio.h>
 void main()
 {
-	int a[10],n,i,j,c,k,t;
-	printf("Enter the size of array \n");
-	scanf("%d",&n);
-	printf("Enter the elements:");
-	for(i=0;i<n;i++)
-		scanf("%d",&a[i]);
-	for(i=1;i<n;i++)
+    int heap[10],n,i,j,c,root,temp;
+    printf("\n Enter number of elements :");
+    scanf("%d",&n);
+    printf("\n Enter the elements : ");
+    for (i=0; i< n;i++)
+	scanf("%d",&heap[i]);
+    for (i= 1;i<n;i++)
+    {
+	c=i;
+	do
+        {
+	    root= (c-1)/2;             
+	    if (heap[root]<heap[c])
+	    {
+
+             temp= heap[root];
+	     heap[root]=heap[c];
+	     heap[c]=temp;
+
+            }
+	   c=root;
+
+        }while(c!=0);
+    }
+    printf("Heap array : ");
+    for (i= 0;i<n;i++)
+        printf("%d \n ", heap[i]);
+    for (j=n-1;j>=0;j--)
+    {
+        temp=heap[0];
+	heap[0] = heap[j];
+        heap[j] = temp;
+	root=0;
+	do 
 	{
-		c=i;
-		do
-		{
-			k=(c-1)/2;
-			if(a[k]<a[c])
-			{
-				t=a[k];
-				a[k]=a[c];
-				a[c]=t;
-			}
-			c=k;
-		}while(c!=0);
-	}
-	for(j=n-1;j>=0;j--)
-	{
-		t=a[0];
-		a[0]=a[j];
-		a[j]=t;
-		k=0;
-		do
-		{
-			c=2*k+1;
-			if((a[c]<a[c+1])&&c<j-1)
-				c++;
-			if(a[k]<a[c]&&c<j)
-			{
-				t=a[k];
-				a[k]=a[c];
-				a[c]=t;
-			}
-			k=c;
-		}while(c<j);
-	}
-	printf("\n The sorted array is:");
-	for(i=0;i<n;i++)
-		printf("%d \t",a[i]);
+
+            c = 2 * root + 1; 
+            if ((heap[c]<heap[c+1]) && c<j-1)
+		c++;
+	    if (heap[root]<heap[c] && c<j)   
+	    {
+		temp=heap[root];
+		heap[root]=heap[c];
+		heap[c]=temp;
+	     }
+	    root=c;
+
+        } while(c<j);
+    } 
+    printf("\n Sorted array ");
+    for (i = 0; i < n; i++)
+	printf("%d \n", heap[i]);
 }
+
+OUTPUT:
+ Enter number of elements :5
+
+ Enter the elements : 2 7 45 12 87
+Heap array : 87 
+ 45 
+ 7 
+ 2 
+ 12 
+ 
+ Sorted array 2 
+7 
+12 
+45 
+87 
