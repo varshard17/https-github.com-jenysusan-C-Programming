@@ -5,134 +5,113 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-int c=0;
+
 struct node
 {
     int data;
-    struct node *next;
+    struct node *link;
+};
 
-}*header;
-
-struct node *newnode()
+void main()
 {
-    struct node* newn=malloc(sizeof(struct node));
-    if(newn==NULL)
+    struct node *head,*temp,*tem;
+    int cho,ele;
+    head=(struct node*)malloc(sizeof(struct node));
+    head->data='\0';
+    head->link=NULL;
+    do
     {
-       printf("\nMemory overflow");
-       exit(0);
-    }
-    else
-     {
-       return (newn);
-     }
-}
-int enqueue()
-{
-    int data;
-  struct node *new=newnode(),*cnode=header;
-  printf("enter data :");
-  scanf("%d",&data);
-  while(cnode->next!=NULL)
-  {
-    cnode=cnode->next;
-  }
-  new->data=data;
-  new->next=NULL;
-  cnode->next=new;
-  c++;
+        printf("\nMENU\n1.Insertion\n2.Deletion\n3.Display\nEnter choice: ");
+        scanf("%d",&cho);
 
-  return 0;
-}
-int dequeue()
-{
-   struct node *new=header->next,*cnode=header;
-   if(header->next==NULL)
-   {
-     printf("\n empty queue ");
-   }
-    else
-   {
-     cnode=new;
-     new=new->next ;
-     header->next=cnode->next;
-     header->next=new;
-     printf("\nenqueued elem is %d  ",cnode->data);
-     free(cnode);
-     c--;
-
-    }
-return 0;
-}
-int delete()
-{
-    struct node *new=header->next,*cnode=header;
-    while(new!=NULL)
-    {
-        cnode=new;
-     new=new->next;
-     free(cnode);printf("\n1.enqueue\n2.dequeue\n3.display\n4.count\n5.delete_all\n6.exit\nenter choice:");
-     c--;
-
-
-    }
-    header->next=NULL;
-
-return 0;
-}
-int  display()
-{
-
-    struct node *new=header->next;
-    if(header->next==NULL)
-        printf("\nempty");
-    else{
-        while(new->next!=NULL)
+        switch(cho)
         {
-
-            printf("  ->%d",new->data);
-            new=new->next;
+            case 1: printf("Enter element: ");
+                    scanf("%d",&ele);
+                    tem=head;
+                    while(tem->link!=NULL)
+                    {
+                        tem=tem->link;
+                    }
+                    temp=(struct node*)malloc(sizeof(struct node));
+                    temp->link=NULL;
+                    tem->link=temp;
+                    temp->data=ele;
+                    break;
+            case 2: if(head->link==NULL)
+                    {
+                        printf("\nQueue is EMPTY\n");
+                    }
+                    else
+                    {
+                        tem=head->link;
+                        temp=tem->link;
+                        head->link=temp;
+                        printf("\nDELETED %d ",tem->data);
+                        free(tem);
+                    }
+                    break;
+            case 3: if(head->link==NULL)
+                    {
+                        printf("\nQueue is EMPTY\n");
+                    }
+                    else
+                    {
+                        temp=head->link;
+                        while(temp!=NULL)
+                        {
+                            printf("%d <-",temp->data);
+                            temp=temp->link;
+                        }
+                        printf(" NULL");
+                    }
+                    break;
         }
-        printf("  ->%d",new->data);
-
-    }
-    return 0;
+    }while(cho==1 || cho==2 || cho==3);
 }
-int main()
-{
-
-    int ch,data;
-    printf("\n1.enqueue\n2.dequeue\n3.display\n4.count\n5.delete_all\n6.exit\nenter choice:");
-    scanf("%d",&ch);
-    header=newnode();
-    header->next=NULL;
-
-    while(1)
-    {
-        switch(ch)
-        {
-        case 1:
-           enqueue();
-            break;
-        case 2:
-            dequeue();
-            break;
-        case 3:
-            display();
-            break;
-        case 4:
-            printf("no of elem in queue is %d",c);
-            break;
-        case 5:
-            delete();
-            break;
-        case 6:
-            exit(0);
-        default:
-            printf("wrong choice");
-        }
-        printf("\n1.enqueue\n2.dequeue\n3.display\n4.count\n5.delete_all\n6.exit\nenter choice:");
-    scanf("%d",&ch);
-    }
-    return 0;
-}
+OUTPUT:
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice:1 Enter element:43 
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice:1 Enter element:33 
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice:1 Enter element:11 
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice: 43 <-33 <-11 <- NULL
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice: 
+DELETED 43 
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice: 
+DELETED 33 
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice: 
+DELETED 11 
+MENU
+1.Insertion
+2.Deletion
+3.Display
+Enter choice: 
+Queue is EMPTY
 
