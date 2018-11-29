@@ -4,85 +4,110 @@
 
 
 
-#include <stdio.h>
-int instackPriority(char symbol) 
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+struct node
 {
-  switch(symbol) 
-  {
-    case '+':
-    case '-':
-      return 2;
-    case '*':
-    case '/':
-      return 4;
-    case '^':
-      return 6;
-    case '(':
-      return 0;
-  }
-}
-int incomingPriority(char symbol)
+    char value;
+    struct node *link;
+};
+
+int issy(char x)
 {
-  switch(symbol) 
-  {
-    case '+':
-    case '-':
-      return 1;
-    case '*':
-    case '/':
-      return 3;
-    case '^':
-      return 5;
-  }
+    if(x=='+' || x=='-'||x=='*'||x=='/'||x=='('||x==')')
+    {
+        return 1;
+    }   
+    else
+    {
+        return 0;
+    }
 }
-int isOperand(char symbol) 
+int j=0;
+char post[25];
+void postfix(struct node *y,struct node *head_op)
 {
-  if ((symbol>=97 && symbol<=122) || (symbol>=65 && symbol<=90)) 
-  {
-    return 1;
-  }
-  return 0;
+    if(y->link!=head_op)
+    {
+        postfix(y->link,head_op);
+        post[j]=y->value;
+        j++;
+    }
+    else
+    {
+        post[j]=y->value;
+        j++;
+    }
 }
-int main () 
+void main()
 {
-  char infix[20], stack[100];
-  int i, top=-1;
-  printf("Enter the infix expression : ");
-  scanf(" %s", &infix);
-  for (i=0; infix[i] != '\0'; i++) 
-  {
-    if (isOperand(infix[i])) 
+    struct node *head_op,*head_sy,*top_op,*top_sy,*temp;
+    char infix[25],x;
+    int i;
+
+    head_op=(struct node*)malloc(sizeof(struct node));
+    head_op->value='\0';
+    head_op->link=NULL;
+    top_op=head_op;
+
+    head_sy=(struct node*)malloc(sizeof(struct node));
+    head_sy->value='\0';
+    head_sy->link=NULL;
+    top_sy=head_sy;
+    
+
+    printf("Enter the infix form: ");
+    scanf("%s",infix);
+    for(i=0;i<strlen(infix);i++)
     {
-      printf("%c", infix[i]);
-    } 
-     else if (infix[i] == '(') 
-    {
-      stack[++top] = infix[i];
-    } 
-     else if (infix[i] == ')') 
-    {
-      while (stack[top] != '(') 
-      {
-        printf("%c", stack[top--]);
-      }
-      top--;
-    } 
-    else if (instackPriority(stack[top])>incomingPriority(infix[i])) 
-    {
-      while (instackPriority(stack[top])>incomingPriority(infix[i]) && top>-1) 
-      {
-        printf("%c", stack[top--]);
-      }
-      stack[++top] = infix[i];
-    } 
-     else 
-     {
-      stack[++top] = infix[i];
-     }
-  }
-  while (top > -1) 
-  
-  {
-    printf("%c", stack[top--]);
-  }
+        if(issy(infix[i])==1)
+        {
+            if(infix[i]==')')
+            {
+                while(top_sy->value!='(')
+                {
+                    x=top_sy->value;
+                    temp=top_sy;
+                    top_sy=top_sy->link;
+                    free(temp);
+
+                    temp=(struct node*)malloc(sizeof(struct node));
+                    temp->value=x;
+                    temp->link=top_op;
+                    top_op=temp;
+
+                }
+                if(top_sy->value=='(')
+                {
+                    temp=top_sy;
+                    top_sy=top_sy->link;
+                    free(temp);
+                }
+            }
+            else
+            {
+                temp=(struct node*)malloc(sizeof(struct node));
+                temp->value=infix[i];
+                temp->link=top_sy;
+                top_sy=temp;
+            }
+        }
+        else
+        {
+            temp=(struct node*)malloc(sizeof(struct node));
+            temp->value=infix[i];
+            temp->link=top_op;
+            top_op=temp;
+
+        }
+    }
+    
+    postfix(top_op,head_op);
+    printf("%s",post);
 }
+
+OUTPUT:
+Enter the infix form: ((A+B)*(C^D))
+AB+CD^*
