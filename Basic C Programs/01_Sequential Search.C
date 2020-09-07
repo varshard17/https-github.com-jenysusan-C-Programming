@@ -1,6 +1,4 @@
-/* Sequential Search
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Sequential Search*/
 
 
 #include<stdio.h>
