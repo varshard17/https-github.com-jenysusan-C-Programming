@@ -1,6 +1,4 @@
-/* Insertion Sort 
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Insertion Sort */
 
 
 #include<stdio.h>
