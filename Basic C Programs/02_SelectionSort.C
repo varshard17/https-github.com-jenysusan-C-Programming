@@ -1,6 +1,4 @@
-/* Selection Sort 
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Selection Sort */
 
 
 #include<stdio.h>
