@@ -1,6 +1,4 @@
-/* Implementation of Dequeue using Array
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Implementation of Dequeue using Array*/
 
 #include<stdio.h>
 #include<stdlib.h>
