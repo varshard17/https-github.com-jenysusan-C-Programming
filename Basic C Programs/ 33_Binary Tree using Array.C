@@ -1,6 +1,4 @@
-/* Binary Tree operations using Array
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Binary Tree operations using Array */
 
 
 
