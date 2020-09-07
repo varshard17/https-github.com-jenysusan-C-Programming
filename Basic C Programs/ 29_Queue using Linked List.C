@@ -1,6 +1,4 @@
-/* Implementation of Queue using Linked List
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Implementation of Queue using Linked List*/
 
 
 #include<stdio.h>
