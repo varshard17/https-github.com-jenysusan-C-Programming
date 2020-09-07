@@ -1,6 +1,4 @@
-/* Circular Queue using Linked List with Insertion and Deletion according to choice of User
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Circular Queue using Linked List with Insertion and Deletion according to choice of User*/
 
 
 
