@@ -1,6 +1,4 @@
-/* Infix Expression Evaluation using Stack
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Infix Expression Evaluation using Stack */
 
 
 #include <stdio.h>
