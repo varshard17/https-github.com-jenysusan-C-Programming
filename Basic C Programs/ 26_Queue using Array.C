@@ -1,6 +1,4 @@
-/* Queue using Array
-   Jeny Susan Rajan S3 D
-   Roll no: 28 */
+/* Implementation of Queue using Array*/
 
 
 #include<stdio.h>
