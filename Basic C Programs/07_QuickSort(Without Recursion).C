@@ -1,6 +1,4 @@
-/* Quick Sort without Recursion
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Quick Sort without Recursion*/
 
 
 
