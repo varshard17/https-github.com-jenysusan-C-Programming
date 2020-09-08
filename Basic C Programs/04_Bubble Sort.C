@@ -1,6 +1,4 @@
-/* Bubble Sort
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Bubble Sort*/
 
 
 #include<stdio.h>
