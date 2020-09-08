@@ -1,6 +1,4 @@
-/* Quicksort with Recursion 
-   Jeny Susan Rajan S3 D
-   Roll no: 28 */
+/* Quicksort with Recursion */
 
 #include<stdio.h>
 void quicksort(int num[25],int first,int last)
