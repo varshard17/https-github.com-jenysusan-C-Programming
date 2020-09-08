@@ -1,6 +1,4 @@
-/* Binary Search
-   Jeny Susan Rajan S3 D 
-   Roll No 28 */
+/* Binary Search*/
 
 
 #include<stdio.h>
